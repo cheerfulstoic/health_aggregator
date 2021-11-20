@@ -12,8 +12,6 @@ defmodule HealthAggregatorWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-
-    post "/health_auto_export/import", HealthAutoExportController, :import
   end
 
   scope "/", HealthAggregatorWeb do
@@ -22,10 +20,11 @@ defmodule HealthAggregatorWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", HealthAggregatorWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", HealthAggregatorWeb do
+    pipe_through :api
+
+    post "/health_auto_export/import", HealthAutoExportController, :import
+  end
 
   # Enables LiveDashboard only for development
   #
