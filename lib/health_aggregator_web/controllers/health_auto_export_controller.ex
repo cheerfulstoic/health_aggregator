@@ -4,6 +4,8 @@ defmodule HealthAggregatorWeb.HealthAutoExportController do
   def index(conn, params) do
     IO.inspect(params, label: :params)
 
+    IO.puts(Jason.encode!(params))
+
     for metrics <- params["data"]["metrics"] do
       HealthAutoExport.import_metrics(metrics["name"], metrics["units"], metrics["data"])
     end
