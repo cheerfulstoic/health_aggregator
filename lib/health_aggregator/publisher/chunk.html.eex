@@ -1,0 +1,6 @@
+
+<%=
+{:safe, content} = svg(@aggregate_data)
+
+content
+%>

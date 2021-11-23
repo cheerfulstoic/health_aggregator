@@ -15,9 +15,18 @@ defmodule HealthAggregator.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: HealthAggregator.PubSub},
       # Start the Endpoint (http/https)
-      HealthAggregatorWeb.Endpoint
+      HealthAggregatorWeb.Endpoint,
       # Start a worker by calling: HealthAggregator.Worker.start_link(arg)
       # {HealthAggregator.Worker, arg}
+
+      %{
+        start: {HealthAggregator.MetricServer, :start_link, [[:heart_rate, 24 * 60 * 60]]},
+        id: :heart_rate_metric_server
+      },
+      %{
+        start: {HealthAggregator.Publisher, :start_link, [:heart_rate]},
+        id: :publisher
+      }
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
