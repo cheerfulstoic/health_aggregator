@@ -1,8 +1,8 @@
 defmodule HealthAggregatorWeb.HealthAutoExportController do
   use HealthAggregatorWeb, :controller
 
-  def index(conn, params) do
-    IO.inspect(params, label: :params)
+  def import(conn, params) do
+    # IO.inspect(params, label: :params)
 
     IO.puts(Jason.encode!(params))
 
