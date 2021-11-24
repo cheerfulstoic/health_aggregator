@@ -1,13 +1,11 @@
 defmodule HealthAggregatorWeb.HealthAutoExportController do
   use HealthAggregatorWeb, :controller
 
+  alias HealthAggregator.HealthAutoExport
+
   def import(conn, params) do
-    # IO.inspect(params, label: :params)
-
-    IO.inspect(Jason.encode!(params), limit: :infinity)
-
     for metrics <- params["data"]["metrics"] do
-      HealthAutoExport.import_metrics(metrics["name"], metrics["units"], metrics["data"])
+      :ok = HealthAutoExport.import_metrics(metrics["name"], metrics["units"], metrics["data"])
     end
 
     json(conn, %{success: "sure"})
