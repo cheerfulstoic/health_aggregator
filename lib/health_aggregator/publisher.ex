@@ -39,7 +39,7 @@ defmodule HealthAggregator.Publisher do
     # File.write!("test.html", blah)
     publish_svg(blah)
 
-    Process.send_after(self(), :generate, 10_000)
+    Process.send_after(self(), :generate, 600_000)
 
     {:noreply, metric_type}
   end
