@@ -22,6 +22,11 @@ defmodule HealthAggregator.HealthAutoExport do
     :ok
   end
 
+  # start, stop, distance, temperature, route?
+  def handle_workout(workout) do
+    HealthAggregator.Handlers.Workout.handle(workout)
+  end
+
   def import_metrics(name, units, _data) do
     {:error, "Unsupported metrics: #{name} / #{units}"}
   end

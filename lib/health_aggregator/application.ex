@@ -24,9 +24,13 @@ defmodule HealthAggregator.Application do
         id: :heart_rate_metric_server
       },
       %{
-        start: {HealthAggregator.Publisher, :start_link, [:heart_rate]},
+        start: {HealthAggregator.Handlers.Workout, :start_link, []},
         id: :publisher
       }
+      # %{
+      #   start: {HealthAggregator.Publisher, :start_link, [:heart_rate]},
+      #   id: :publisher
+      # }
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
